@@ -55,8 +55,10 @@ module.exports = {
    * `UserController.logout()`
    */
   logout: function (req, res) {
+    req.session.authenticated = false;
+    req.session.user = null;
     return res.json({
-      todo: 'logout() is not implemented yet!'
+      message: 'Logged out'
     });
   },
 
