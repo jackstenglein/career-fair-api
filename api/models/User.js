@@ -28,14 +28,14 @@ module.exports = {
       type: 'string'
     },
 
-    resume: {
-      type: 'binary'
+    resumeUrl: {
+      type: 'string'
     },
 
     role: {
       type: 'integer',
       required: true
     }
-    
+
   }
 };
