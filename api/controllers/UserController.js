@@ -16,9 +16,18 @@ module.exports = {
    * `UserController.login()`
    */
   login: function (req, res) {
-    return res.json({
-      todo: 'login() is not implemented yet!'
-    });
+		checkParams(req, {
+			bodyParams: [
+				'email',
+				'password'
+			]
+		}).then(function() {
+			return AuthService.login(req.body).then(function(response) {
+				return res.json(response);
+			});
+		}).catch(function(err) {
+			return HelperService.handleError(err, res);
+		});
   },
 
 
