@@ -63,26 +63,6 @@ module.exports = {
   },
 
 
-  /**
-   * `UserController.signup()`
-   */
-  signup: function (req, res) {
-		checkParams(req, {
-			bodyParams: [
-				'name',
-				'email',
-				'password',
-				'role'
-			]
-		}).then(function() {
-			return AuthService.signup(req.body).then(function(response) {
-				return res.json(response);
-			});
-		}).catch(function(err) {
-			return HelperService.handleError(err, res);
-		});
-  },
-
   updateInfo: function(req, res) {
     var update = {};
     var needsUpdate = false;
@@ -149,4 +129,24 @@ module.exports = {
 			return HelperService.handleError(err, res);
 		}
 	}, // </uploadResume>
+
+  /**
+   * `UserController.signup()`
+   */
+  signup: function (req, res) {
+		checkParams(req, {
+			bodyParams: [
+				'name',
+				'email',
+				'password',
+				'role'
+			]
+		}).then(function() {
+			return AuthService.signup(req.body).then(function(response) {
+				return res.json(response);
+			});
+		}).catch(function(err) {
+			return HelperService.handleError(err, res);
+		});
+  }
 };
