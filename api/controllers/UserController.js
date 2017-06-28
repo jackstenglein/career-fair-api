@@ -7,6 +7,7 @@
 
 
 var checkParams = require('check-params');
+var Err = require('err');
 
 module.exports = {
 
@@ -64,21 +65,19 @@ module.exports = {
   },
 
 	uploadResume: function(req, res) {
-		/*req.file('resume').upload({ dirname: 'assets/images'}, function(err, uploadedFiles) {
-			console.log('Err: %j', err);
-			console.log('UploadedFiles: %j', uploadedFiles);
-
-
-			if(err) return HelperService.handleError(err, res);
-
-			return res.json({
-				message: uploadedFiles.length + ' file(s) uploaded successfully!',
-				files: uploadedFiles
-			});
-		});*/
 		try {
-			req.file('resume').upload({
-	  		// Required
+			var fileUpload = req.file('resume');
+
+      var filename = fileUpload._files[0].stream.filename;
+      console.log('Filename: %j', filename);
+
+      //console.log('File Upload: %j', fileUpload);
+      if(filename.indexOf('.pdf') !== filename.length - 4) {
+        throw new Err('The resume must be a PDF', 400);
+      }
+
+      fileUpload.upload({
+	  		// Required to upload to S3
 	  		adapter: require('skipper-s3'),
 	  		key: process.env.AWS_KEY,
 	  		secret: process.env.AWS_SECRET,
@@ -89,8 +88,8 @@ module.exports = {
 	  		}
 
 	  		return res.json({
-					message: uploadedFiles.length + ' file(s) uploaded successfully!',
-	    		files: uploadedFiles
+					message: 'Resume uploaded',
+          file: uploadedFiles[0]
 				});
 			});
 		} catch(err) {
