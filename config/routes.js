@@ -47,6 +47,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   /***** USER ROUTES *****/
-  'POST /user/signup'   :   'UserController.signup',
-  'POST /user/login'    :   'UserController.login'
+  'POST /user/signup'           :   'UserController.signup',
+  'POST /user/login'            :   'UserController.login',
+  'POST /user/upload-resume'    :   'UserController.uploadResume'
 };
