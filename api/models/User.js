@@ -28,6 +28,10 @@ module.exports = {
       type: 'string'
     },
 
+    website: {
+      type: 'string'
+    },
+
     resumeUrl: {
       type: 'string'
     },

@@ -8,6 +8,23 @@
 
 var checkParams = require('check-params');
 var Err = require('err');
+/*var AWS = require('aws-sdk');
+var credentials = new AWS.Credentials(process.env.AWS_KEY, process.env.AWS_SECRET, null);
+var S3 = new AWS.S3({region: 'us-east-1', credentials: credentials});*/
+var s3 = require('s3');
+var client = s3.createClient({
+  maxAsyncS3: 20,     // this is the default
+  s3RetryCount: 3,    // this is the default
+  s3RetryDelay: 1000, // this is the default
+  multipartUploadThreshold: 20971520, // this is the default (20 MB)
+  multipartUploadSize: 15728640, // this is the default (15 MB)
+  s3Options: {
+    accessKeyId: process.env.AWS_KEY,
+    secretAccessKey: process.env.AWS_SECRET,
+    // any other options are passed to new AWS.S3()
+    // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
+  },
+});
 
 module.exports = {
 
@@ -64,6 +81,33 @@ module.exports = {
 		});
   },
 
+  updateInfo: function(req, res) {
+    var update = {};
+    var needsUpdate = false;
+
+    if(req.body.phone) {
+      update.phone = req.body.phone;
+      needsUpdate = true;
+    }
+
+    if(req.body.website) {
+      update.website = req.body.website;
+      needsUpdate = true;
+    }
+
+    if(!needsUpdate) {
+      return HelperService.handleError(new Err('You are missing required parameters.', 400), res);
+    }
+
+    return User.update(req.session.user, update).then(function(updatedRecords, err) {
+      if(err) return HelperService.handleError(err, res);
+      return res.json({
+        message: 'User updated',
+        user: updatedRecords[0]
+      });
+    });
+  },
+
 	uploadResume: function(req, res) {
     // get the file and determine whether we should upload to S3
     var fileUpload = req.file('resume');
@@ -102,5 +146,5 @@ module.exports = {
 		} catch(err) {
 			return HelperService.handleError(err, res);
 		}
-	} // </uploadResume>
+	}, // </uploadResume>
 };
