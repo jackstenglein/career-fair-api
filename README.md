@@ -34,3 +34,15 @@ Response:
 * `message` (string) - Message from API to help with debugging
 * `user` (object) - The logged-in user
 * `error` (string) - The error message, if applicable
+
+
+#### `POST /user/upload-resume`
+Uploads the resume of the user to Amazon S3. The resume must be a pdf and the user must be logged in.
+
+Body:
+* `resume` (pdf) - The resume to upload to AWS S3
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `url` (string) - The URL of the resume on S3
+* `error` (string) - The error message, if applicable
