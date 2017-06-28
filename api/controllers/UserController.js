@@ -43,9 +43,8 @@ module.exports = {
 				'password',
 				'role'
 			]
-		}).then(function(message) {
+		}).then(function() {
 			return AuthService.signup(req.body).then(function(response) {
-				console.log(response);
 				return res.json(response);
 			});
 		}).catch(function(err) {
