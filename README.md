@@ -3,6 +3,43 @@
 The API for a new career-fair app.
 
 
+## Models
+
+### User
+
+The User model represents the administrators, employees and students that use the service.  
+The User model has the following attributes:  
+* `name` (string, required) - The full name of the user  
+* `email` (string, required, unique) - The email address of the user  
+* `password` (string, required) - The salted and hashed password of the user  
+* `phone` (string) - The phone number of the user  
+* `website` (string) - The website URL of the user
+* `resumeUrl` (string) - The URL of the user's resume on Amazon S3
+* `role` (integer, required) - Indicates whether the user is an admin, employer or student (or creator?)
+
+
+### Organization
+
+The Organization model represents the organizations that host the career fairs, for example McCombs.  
+The Organization model has the following attributes:  
+* `name` (string, required) - The name of the organization
+* `creator` (User, required) - The user that created the organization
+* `administartors` ([User]) - A list of the organization's administrators
+* `fairs` ([Fair]) - A list of the organization's fairs
+
+
+### Fair
+
+The Fair model represents a single career fair.  
+The Fair model has the following attributes:
+* `name` (string, required) - The name of the career fair
+* `dateTime` (string) - The date and time of the career fair formatted YY/MM/DD-HH/MM-HH/MM 
+* `organization` (Organization, required) - The organization hosting the career fair
+* `students` ([User]) - A list of the students that have signed up for the career fair
+* `employers` ([User]) - A list of the employers that will attend the fair
+
+
+
 ## Endpoints
 
 
