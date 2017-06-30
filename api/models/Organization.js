@@ -1,5 +1,5 @@
 /**
- * User.js
+ * Organization.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -8,42 +8,24 @@
 module.exports = {
 
   attributes: {
-
     name: {
       type: 'string',
       required: true
     },
 
-    email: {
-      type: 'string',
+    creator: {
+      model: 'user',
       required: true
     },
 
-    password: {
-      type: 'string',
-      required: true
+    administartors: {
+      collection: 'user',
+      via: 'organization'
     },
 
-    phone: {
-      type: 'string'
-    },
-
-    website: {
-      type: 'string'
-    },
-
-    resumeUrl: {
-      type: 'string'
-    },
-
-    role: {
-      type: 'integer',
-      required: true
-    },
-
-    organization: {
-      model: 'organization'
+    fairs: {
+      collection: 'fair',
+      via: 'organization'
     }
-
   }
 };
