@@ -32,9 +32,18 @@ module.exports = {
     },
 
     students: {
-      
+      collection: 'user',
+      via: 'studentFairs'
+    },
+
+    employers: {
+      collection: 'user',
+      via: 'employerFairs'
+    },
+
+    interactions: {
+      collection: 'interaction',
+      via: 'fair'
     }
-
-
   }
 };

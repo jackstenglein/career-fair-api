@@ -43,6 +43,28 @@ module.exports = {
 
     organization: {
       model: 'organization'
+    },
+
+    studentFairs: {
+      collection: 'fair',
+      via: 'students',
+      dominant: true
+    },
+
+    employerFairs: {
+      collection: 'fair',
+      via: 'students',
+      dominant: true
+    },
+
+    studentInteractions: {
+      collection: 'interaction',
+      via: 'student'
+    },
+
+    employerInteractions: {
+      collection: 'interaction',
+      via: 'employer'
     }
 
   }
