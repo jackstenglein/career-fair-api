@@ -53,7 +53,7 @@ module.exports = {
 
     employerFairs: {
       collection: 'fair',
-      via: 'students',
+      via: 'employers',
       dominant: true
     },
 

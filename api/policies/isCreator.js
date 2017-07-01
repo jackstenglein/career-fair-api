@@ -8,8 +8,10 @@
  */
 module.exports = function(req, res, next) {
 
+  //console.log('req.session: %j', req.session);
+
   if (req.session.authenticated) {
-    User.findOne({
+    return User.findOne({
       id: req.session.user,
       role: 0
     }).then(function(user, err) {

@@ -51,6 +51,10 @@ module.exports.routes = {
   'POST /user/login'            :   'UserController.login',
   'GET /user/logout'            :   'UserController.logout',
   'PUT /user/update-info'       :   'UserController.updateInfo',
-  'POST /user/upload-resume'    :   'UserController.uploadResume'
+  'POST /user/upload-resume'    :   'UserController.uploadResume',
+
+
+  /***** ORGANIZATION ROUTES *****/
+  'POST /organization/new'      :   'OrganizationController.newOrganization'
 
 };

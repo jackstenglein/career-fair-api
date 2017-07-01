@@ -52,5 +52,9 @@ module.exports.policies = {
   UserController: {
     uploadResume    :   'sessionAuth',
     updateInfo      :   'sessionAuth'
+  },
+
+  OrganizationController: {
+    newOrganization   :   'isCreator'
   }
 };

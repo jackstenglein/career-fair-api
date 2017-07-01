@@ -118,3 +118,12 @@ Response:
 * `message` (string) - Message from API to help with debugging
 * `user` (object) - The newly-created user
 * `error` (string) - The error message, if applicable
+
+
+### Organization endpoints
+
+#### `POST /organization/new`
+Creates a new organization. The user creating the organization must be logged in and have a creator role.
+
+Body:
+* `name` (string) - The name of the new organization
