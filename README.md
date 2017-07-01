@@ -17,6 +17,7 @@ The User model has the following attributes:
 * `resumeUrl` (string) - The URL of the user's resume on Amazon S3
 * `role` (integer, required) - Indicates whether the user is an admin, employer or student (or creator?)
 * `organization` (Organization) - The organization the administrator is affiliated with
+* `fairs` ([Fair]) - A list of the fairs the user has been to
 
 
 ### Organization
@@ -38,6 +39,15 @@ The Fair model has the following attributes:
 * `organization` (Organization, required) - The organization hosting the career fair
 * `students` ([User]) - A list of the students that have signed up for the career fair
 * `employers` ([User]) - A list of the employers that will attend the fair
+
+
+### Interaction
+
+The Interaction model represents a single interaction between employer and student.
+The Interaction model has the following attributes:
+* `employer` (User, required) - The employer involved in the interaction
+* `student` (User, required) - The student involved in the interaction
+* `fair` (Fair, required) - The fair the interaction happened at
 
 
 
