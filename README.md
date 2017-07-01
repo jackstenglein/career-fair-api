@@ -16,6 +16,7 @@ The User model has the following attributes:
 * `website` (string) - The website URL of the user
 * `resumeUrl` (string) - The URL of the user's resume on Amazon S3
 * `role` (integer, required) - Indicates whether the user is an admin, employer or student (or creator?)
+* `organization` (Organization) - The organization the administrator is affiliated with
 
 
 ### Organization
