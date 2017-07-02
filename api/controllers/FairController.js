@@ -25,23 +25,23 @@ module.exports = {
    },
 
 
-   updateDateTime: function(req, res) {
+   updateInfo: function(req, res) {
      return checkParams(req, {
        bodyParams: [
-         'fair',
-         'dateTime'
+         'fair'
        ]
      }).then(function() {
-       return FairService.updateDateTime(req.session.user, req.body.fair, req.body.dateTime)
+      if(!req.body.dateTime && !req.body.name)
+        return HelperService.handleError(new Err('No parameters specified', 400), res);
+
+       return FairService.updateInfo(req.session.user, req.body.fair, req.body)
        .then(function(response) {
          return res.json(response);
        });
      }).catch(function(err) {
        return HelperService.handleError(err, res);
      });
-
    }
-
 
 
  }

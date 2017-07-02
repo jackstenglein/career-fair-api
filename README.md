@@ -161,12 +161,13 @@ Response:
 * `error` (string) - The error message, if applicable
 
 
-#### `PUT /fair/update-date`
-Updates the date and time of a fair. The user updating the fair must be logged in and have a creator or administrator role.
+#### `PUT /fair/update-info`
+Updates the date and time or name of a fair. The user updating the fair must be logged in and have a creator or administrator role.
 
 Body:
 * `fair` (string) - The ID of the fair to update
-* `dateTime` (string) - The new date and time of the fair
+* `name` (string, optional) - The new name of the fair
+* `dateTime` (string, optional) - The new date and time of the fair
 
 Response:
 * `message` (string) - Message from API to help with debugging

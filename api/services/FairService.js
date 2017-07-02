@@ -24,6 +24,10 @@ function isValidDateTimeFormat(dateTime) {
 module.exports = {
 
   newFair: function(creatorID, params) {
+    if(params.dateTime && !isValidDateTimeFormat(params.dateTime)) {
+      throw new Err('Invalid date/time format', 400);
+    }
+
     return User.findOne(creatorID).populate('organization')
     .then(function(user, err) {
       if(err) throw err;
@@ -39,10 +43,10 @@ module.exports = {
     }); // </User.findOne>
   },
 
-  updateDateTime: function(userID, fairID, dateTime) {
+  updateInfo: function(userID, fairID, params) {
 
     // first check the format of the date/time
-    if(!isValidDateTimeFormat(dateTime)) {
+    if(params.dateTime && !isValidDateTimeFormat(params.dateTime)) {
       throw new Err('Invalid date/time format', 400);
     }
 
@@ -57,7 +61,8 @@ module.exports = {
         }
 
         return new Promise(function(resolve, reject) {
-          fair.dateTime = dateTime;
+          if(params.dateTime) fair.dateTime = params.dateTime;
+          if(params.name) fair.name = params.name;
           fair.save(function(err) {
             if(err) reject(err);
             resolve({

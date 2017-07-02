@@ -61,6 +61,6 @@ module.exports.routes = {
 
   /***** FAIR ROUTES *****/
   'POST /fair/new'          :     'FairController.newFair',
-  'PUT /fair/update-date'   :     'FairController.updateDateTime'
+  'PUT /fair/update-info'   :     'FairController.updateInfo'
 
 };

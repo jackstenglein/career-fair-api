@@ -61,6 +61,6 @@ module.exports.policies = {
 
   FairController: {
     newFair           :     'isAdminOrCreator',
-    updateDateTime    :     'isAdminOrCreator'
+    updateInfo    :     'isAdminOrCreator'
   }
 };
