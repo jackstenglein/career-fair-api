@@ -19,5 +19,13 @@ module.exports = {
         }
       });
     });
+  },
+
+  allInteractionsForUser: function(userID, role) {
+    return User.findOne(userID).then(function(user) {
+      if(user.role === 2) {
+
+      }
+    })
   }
 }

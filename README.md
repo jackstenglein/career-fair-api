@@ -187,3 +187,12 @@ Creates a new interaction between a student and an employer. The user making the
 Body:
 * `employer` (string) - The ID of the employer
 * `fair` (string) - The ID of the fair the interaction happened at
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `interaction` (object) - The newly-created interaction
+* `error` (string) - The error message, if applicable
+
+
+#### `GET /interaction/all`
+Gets all interactions for the logged in user.
