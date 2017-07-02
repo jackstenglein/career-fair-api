@@ -55,6 +55,11 @@ module.exports.routes = {
 
 
   /***** ORGANIZATION ROUTES *****/
-  'POST /organization/new'      :   'OrganizationController.newOrganization'
+  'POST /organization/new'      :   'OrganizationController.newOrganization',
+
+
+  /***** FAIR ROUTES *****/
+  'POST /fair/new'          :     'FairController.newFair',
+  'PUT /fair/update-date'   :     'FairController.updateDateTime'
 
 };

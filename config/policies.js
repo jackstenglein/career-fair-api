@@ -56,5 +56,10 @@ module.exports.policies = {
 
   OrganizationController: {
     newOrganization   :   'isCreator'
+  },
+
+  FairController: {
+    newFair           :     'isAdminOrCreator',
+    updateDateTime    :     'isAdminOrCreator'
   }
 };

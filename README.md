@@ -39,7 +39,7 @@ The Organization model has the following attributes:
 The Fair model represents a single career fair.  
 The Fair model has the following attributes:
 * `name` (string, required) - The name of the career fair
-* `dateTime` (string) - The date and time of the career fair formatted YY/MM/DD-HH/MM-HH/MM
+* `dateTime` (string) - The date and time of the career fair formatted YY/MM/DD/HH/MM/HH/MM
 * `organization` (Organization, required) - The organization hosting the career fair
 * `students` ([User]) - A list of the students that have signed up for the career fair
 * `employers` ([User]) - A list of the employers that will attend the fair
@@ -127,3 +127,36 @@ Creates a new organization. The user creating the organization must be logged in
 
 Body:
 * `name` (string) - The name of the new organization
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `organization` (object) - The newly-created organization
+* `error` (string) - The error message, if applicable
+
+
+### Fair endpoints
+
+#### `POST /fair/new`
+Creates a new fair. The user creating the fair must be logged in and have a creator or administrator role.
+
+Body:  
+* `name` (string) - The name of the new fair
+* `dateTime` (string, optional) - The date and time of the fair, formatted as specified in the Models section
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `fair` (object) - The newly-created fair
+* `error` (string) - The error message, if applicable
+
+
+#### `PUT /fair/update-date`
+Updates the date and time of a fair. The user updating the fair must be logged in and have a creator or administrator role.
+
+Body:
+* `id` (string) - The ID of the fair to update
+* `dateTime` (string) - The new date and time of the fair
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `fair` (object) - The updated fair
+* `error` (string) - The error message, if applicable
