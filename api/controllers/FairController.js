@@ -28,11 +28,11 @@ module.exports = {
    updateDateTime: function(req, res) {
      return checkParams(req, {
        bodyParams: [
-         'id',
+         'fair',
          'dateTime'
        ]
      }).then(function() {
-       return FairService.updateDateTime(req.session.user, req.body.id, req.body.dateTime)
+       return FairService.updateDateTime(req.session.user, req.body.fair, req.body.dateTime)
        .then(function(response) {
          return res.json(response);
        });

@@ -52,6 +52,7 @@ module.exports.routes = {
   'GET /user/logout'            :   'UserController.logout',
   'PUT /user/update-info'       :   'UserController.updateInfo',
   'POST /user/upload-resume'    :   'UserController.uploadResume',
+  'POST /user/register-fair'    :   'UserController.registerFair',
 
 
   /***** ORGANIZATION ROUTES *****/

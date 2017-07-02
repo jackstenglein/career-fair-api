@@ -8,9 +8,7 @@
 
 var checkParams = require('check-params');
 var Err = require('err');
-/*var AWS = require('aws-sdk');
-var credentials = new AWS.Credentials(process.env.AWS_KEY, process.env.AWS_SECRET, null);
-var S3 = new AWS.S3({region: 'us-east-1', credentials: credentials});*/
+
 var s3 = require('s3');
 var client = s3.createClient({
   maxAsyncS3: 20,     // this is the default
@@ -129,6 +127,21 @@ module.exports = {
 			return HelperService.handleError(err, res);
 		}
 	}, // </uploadResume>
+
+  registerFair: function(req, res) {
+    checkParams(req, {
+      bodyParams: [
+        'fair'
+      ]
+    }).then(function() {
+      return UserService.registerFair(req.session.user, req.body.fair)
+      .then(function(response) {
+        res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
 
   /**
    * `UserController.signup()`

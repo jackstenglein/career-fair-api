@@ -105,6 +105,18 @@ Response:
 * `error` (string) - The error message, if applicable
 
 
+#### `POST /user/register-fair`
+Registers a user for a fair. The user must be logged in and have either employer or student role.
+
+Body:
+* `fair` (string) - The ID of the fair to register to
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `user` (object) - The user added to the fair
+* `error` (string) - The error message, if applicable
+
+
 #### `POST /user/signup`
 Creates a new user.  
 
@@ -153,7 +165,7 @@ Response:
 Updates the date and time of a fair. The user updating the fair must be logged in and have a creator or administrator role.
 
 Body:
-* `id` (string) - The ID of the fair to update
+* `fair` (string) - The ID of the fair to update
 * `dateTime` (string) - The new date and time of the fair
 
 Response:

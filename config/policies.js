@@ -51,7 +51,8 @@ module.exports.policies = {
 
   UserController: {
     uploadResume    :   'sessionAuth',
-    updateInfo      :   'sessionAuth'
+    updateInfo      :   'sessionAuth',
+    registerFair    :   'sessionAuth'
   },
 
   OrganizationController: {
