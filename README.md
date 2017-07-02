@@ -21,7 +21,10 @@ The User model has the following attributes:
     * `2` - The user is an employer
     * `3` - The user is a student
 * `organization` (Organization) - The organization the administrator is affiliated with
-* `fairs` ([Fair]) - A list of the fairs the user has been to
+* `studentFairs` ([Fair]) - A list of the fairs the student has been to
+* `employerFairs` ([Fair]) - A list of the fairs the employer has been to
+* `studentInteractions` ([Interaction]) - A list of the interactions a student has had
+* `employerInteractions` ([Interaction]) - A list of the interactions an employer has had
 
 
 ### Organization
@@ -173,3 +176,13 @@ Response:
 * `message` (string) - Message from API to help with debugging
 * `fair` (object) - The updated fair
 * `error` (string) - The error message, if applicable
+
+
+### Interaction Endpoints
+
+#### `POST /interaction/new`
+Creates a new interaction between two users. The user making the request must be logged in and have an employer or student role. The other user must be either an employer or student and the opposite of the user making the request.
+
+Body:
+* `user` (string) - The ID of the user not making the request
+* ``

@@ -34,10 +34,10 @@ module.exports = {
       if(!req.body.dateTime && !req.body.name)
         return HelperService.handleError(new Err('No parameters specified', 400), res);
 
-       return FairService.updateInfo(req.session.user, req.body.fair, req.body)
-       .then(function(response) {
-         return res.json(response);
-       });
+      return FairService.updateInfo(req.session.user, req.body.fair, req.body)
+      .then(function(response) {
+        return res.json(response);
+      });
      }).catch(function(err) {
        return HelperService.handleError(err, res);
      });
