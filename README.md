@@ -46,6 +46,7 @@ The Fair model has the following attributes:
 * `organization` (Organization, required) - The organization hosting the career fair
 * `students` ([User]) - A list of the students that have signed up for the career fair
 * `employers` ([User]) - A list of the employers that will attend the fair
+* `interactions` ([Interaction]) - A list of the interactions that take place at the fair
 
 
 ### Interaction

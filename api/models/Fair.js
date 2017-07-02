@@ -14,15 +14,7 @@ module.exports = {
       required: true
     },
 
-    date: {
-      type: 'string'
-    },
-
-    startTime: {
-      type: 'string'
-    },
-
-    endTime: {
+    dateTime: {
       type: 'string'
     },
 
