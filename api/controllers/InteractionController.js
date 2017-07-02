@@ -11,7 +11,21 @@
 
  module.exports = {
 
-   
+   newInteraction: function(req, res) {
+     return checkParams(req, {
+       bodyParams: [
+         'employer',
+         'fair'
+       ]
+     }).then(function() {
+       return InteractionService.newInteraction(req.session.user, req.body.employer, req.body.fair)
+       .then(function(response) {
+         res.json(response);
+       });
+     }).catch(function(err) {
+       return HelperService.handleError(err, res);
+     });
+   }
 
 
  }

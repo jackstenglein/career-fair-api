@@ -9,15 +9,18 @@ module.exports = {
 
   attributes: {
     employer: {
-      model: 'user'
+      model: 'user',
+      required: true
     },
 
     student: {
-      model: 'user'
+      model: 'user',
+      required: true
     },
 
     fair: {
-      model: 'fair'
+      model: 'fair',
+      required: true
     }
   }
 };

@@ -182,8 +182,8 @@ Response:
 ### Interaction Endpoints
 
 #### `POST /interaction/new`
-Creates a new interaction between two users. The user making the request must be logged in and have an employer or student role. The other user must be either an employer or student and the opposite of the user making the request.
+Creates a new interaction between a student and an employer. The user making the request must be logged in and have a student role. The other user must be an employer.
 
 Body:
-* `user` (string) - The ID of the user not making the request
-* ``
+* `employer` (string) - The ID of the employer
+* `fair` (string) - The ID of the fair the interaction happened at

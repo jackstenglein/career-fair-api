@@ -62,5 +62,9 @@ module.exports.policies = {
   FairController: {
     newFair           :     'isAdminOrCreator',
     updateInfo    :     'isAdminOrCreator'
+  },
+
+  InteractionController: {
+    newInteraction    :   'isStudent'
   }
 };
