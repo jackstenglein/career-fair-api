@@ -1,4 +1,5 @@
 const Err = require('err');
+const nestedPop = require('nested-pop');
 
 module.exports = {
 
@@ -19,13 +20,5 @@ module.exports = {
         }
       });
     });
-  },
-
-  allInteractionsForUser: function(userID, role) {
-    return User.findOne(userID).then(function(user) {
-      if(user.role === 2) {
-
-      }
-    })
   }
 }

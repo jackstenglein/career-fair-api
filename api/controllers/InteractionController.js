@@ -27,20 +27,7 @@
      });
    },
 
-   allInteractionsForUser: function(req, res) {
-     return checkParams(req, {
-       queryParams: [
-         'role'
-       ]
-     }).then(function() {
-       return InteractionService.allInteractionsForUser(req.session.user, )
-       .then(function(response) {
-         return res.json(response);
-       });
-     }).catch(function(err) {
-       return HelperService.handleError(err, res);
-     })
-   }
+  
 
 
  }

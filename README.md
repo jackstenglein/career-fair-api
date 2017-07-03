@@ -64,6 +64,18 @@ The Interaction model has the following attributes:
 
 ### User endpoints
 
+#### `GET /user/interactions-all`
+Gets all interactions for the logged in user. The user must be an employer or student. The interactions have the fair attribute and either the employer or student attribute populated.
+
+Query:
+* `role` (integer) - The role of the user
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `interactions` ([object]) - A list of the user's interactions, populated with employers or students depending on the user's role
+* `error` (string) - The error message, if applicable
+
+
 #### `POST /user/login`
 Logs in a user.
 
@@ -192,7 +204,3 @@ Response:
 * `message` (string) - Message from API to help with debugging
 * `interaction` (object) - The newly-created interaction
 * `error` (string) - The error message, if applicable
-
-
-#### `GET /interaction/all`
-Gets all interactions for the logged in user.

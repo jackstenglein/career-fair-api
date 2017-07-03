@@ -26,6 +26,21 @@ var client = s3.createClient({
 
 module.exports = {
 
+  allInteractions: function(req, res) {
+    return checkParams(req, {
+      queryParams: [
+        'role'
+      ]
+    }).then(function() {
+      return UserService.allInteractions(req.session.user, req.query.role)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    })
+  },
+
 
 
   /**

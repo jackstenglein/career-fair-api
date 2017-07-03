@@ -47,6 +47,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   /***** USER ROUTES *****/
+  'GET /user/interactions-all'    : 'UserController.allInteractions',
   'POST /user/signup'           :   'UserController.signup',
   'POST /user/login'            :   'UserController.login',
   'GET /user/logout'            :   'UserController.logout',
