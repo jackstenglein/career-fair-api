@@ -59,6 +59,7 @@ module.exports.routes = {
 
 
   /***** ORGANIZATION ROUTES *****/
+  'GET /organization/fair'      :   'OrganizationController.getFair',
   'GET /organization/fairs-all' :   'OrganizationController.allFairs',
   'POST /organization/new'      :   'OrganizationController.newOrganization',
 

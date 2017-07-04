@@ -59,6 +59,7 @@ module.exports.policies = {
   },
 
   OrganizationController: {
+    getFair           :   'sessionAuth',
     allFairs          :   'isAdminOrCreator',
     newOrganization   :   'isCreator'
   },

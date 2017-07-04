@@ -173,11 +173,23 @@ Response:
 ### Organization endpoints
 
 #### `GET /organization/fairs-all`
-Gets all fairs for an organization. The user must be logged in and have administrator or creator role. The fairs do not have any attributes populated.
+Gets all fairs for an organization. The user must be logged in and have administrator or creator role. The fairs do not have any model attributes populated.
 
 Response:
 * `message` (string) - Message from API to help with debugging
 * `fairs` ([object]) - A list of the organization's fair's
+* `error` (string) - The error message, if applicable
+
+
+#### `GET /organization/fair`
+Gets a specific fair for an organization. The user must be logged in and have administrator or creator role. The fair will be returned with three extra attributes: number of students, number of employers and number of interactions. No model attributes will be populated.
+
+Query:
+* `fair` (string) - The ID of the fair to return
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `fair` (object) - The requested fair
 * `error` (string) - The error message, if applicable
 
 

@@ -43,6 +43,39 @@ module.exports = {
         return {'message': 'Fairs found', 'fairs': user.organization.fairs};
       });
     });
+  },
+
+  getFair: function(userID, fairID) {
+    return User.findOne(userID)
+    .then(function(user, err) {
+      if(err) throw err;
+      if(!user) throw new Err('User not found', 400);
+      if(user.role !== 0 && user.role !== 1) throw new Err('You must have creator or administrator status', 403);
+
+      return Fair.findOne(fairID)
+      .populate('students')
+      .populate('employers')
+      .populate('interactions')
+      .then(function(fair, err) {
+        if(err) throw err;
+        if(!fair) throw new Err('Fair not found', 400);
+        if(fair.organization !== user.organization) throw new Err('You are not a creator or administrator of this fair', 400);
+
+        var finalFair = {
+          name: fair.name,
+          organization: fair.organization,
+          createdAt: fair.createdAt,
+          updatedAt: fair.updatedAt,
+          dateTime: fair.dateTime,
+          id: fair.id,
+          numberOfStudents: fair.students.length,
+          numberOfEmployers: fair.employers.length,
+          numberOfInteractions: fair.interactions.length
+        };
+
+        return {'message': 'Fair found', 'fair': finalFair};
+      });
+    });
   }
 
 }

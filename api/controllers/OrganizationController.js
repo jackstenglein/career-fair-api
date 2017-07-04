@@ -31,5 +31,20 @@ module.exports = {
     }).catch(function(err) {
       return HelperService.handleError(err, res);
     });
+  },
+
+  getFair: function(req, res) {
+    return checkParams(req, {
+      queryParams: [
+        'fair'
+      ]
+    }).then(function() {
+      return OrganizationService.getFair(req.session.user, req.query.fair)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
   }
 }
