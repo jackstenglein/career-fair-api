@@ -172,6 +172,15 @@ Response:
 
 ### Organization endpoints
 
+#### `GET /organization/fairs-all`
+Gets all fairs for an organization. The user must be logged in and have administrator or creator role. The fairs do not have any attributes populated.
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `fairs` ([object]) - A list of the organization's fair's
+* `error` (string) - The error message, if applicable
+
+
 #### `POST /organization/new`
 Creates a new organization. The user creating the organization must be logged in and have a creator role.
 

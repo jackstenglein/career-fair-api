@@ -9,7 +9,7 @@ const checkParams = require('check-params');
 
 module.exports = {
 
-  newOrganization(req, res) {
+  newOrganization: function(req, res) {
     return checkParams(req, {
       bodyParams: [
         'name'
@@ -19,6 +19,15 @@ module.exports = {
       .then(function(response) {
         return res.json(response);
       });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
+
+  allFairs: function(req, res) {
+    return OrganizationService.allFairs(req.session.user)
+    .then(function(response) {
+      return res.json(response);
     }).catch(function(err) {
       return HelperService.handleError(err, res);
     });
