@@ -50,7 +50,9 @@ module.exports.policies = {
 	// }
 
   UserController: {
+    allFairs        :   'sessionAuth',
     allInteractions :   'sessionAuth',
+    interactionsForFair : 'sessionAuth',
     uploadResume    :   'sessionAuth',
     updateInfo      :   'sessionAuth',
     registerFair    :   'sessionAuth'

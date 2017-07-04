@@ -64,6 +64,15 @@ The Interaction model has the following attributes:
 
 ### User endpoints
 
+#### `GET /user/fairs-all`
+Gets all fairs for the logged in user. The user must be an employer or student. The fair has the organization attribute populated.
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `fairs` ([object]) - A list of the user's fairs, populated with the organization
+* `error` (string) - The error message, if applicable
+
+
 #### `GET /user/interactions-all`
 Gets all interactions for the logged in user. The user must be an employer or student. The interactions have the fair attribute and either the employer or student attribute populated.
 
@@ -72,7 +81,20 @@ Query:
 
 Response:
 * `message` (string) - Message from API to help with debugging
-* `interactions` ([object]) - A list of the user's interactions, populated with employers or students depending on the user's role
+* `interactions` ([object]) - A list of the user's interactions, populated with fairs and employers or students depending on the user's role
+* `error` (string) - The error message, if applicable
+
+
+#### `GET /user/interactions-fair`
+Gets interactions from a specific fair for the logged in user. The user must be an employer or student. The interactions have either the employer or student attribute populated.
+
+Query:
+* `role` (integer) - The role of the user
+* `fair` (string) - The ID of the fair the interactions occurred at
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `interactions` ([object]) - A list of the user's interactions, populated with either employers or students depending on the user's role
 * `error` (string) - The error message, if applicable
 
 

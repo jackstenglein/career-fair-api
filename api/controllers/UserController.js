@@ -26,6 +26,21 @@ var client = s3.createClient({
 
 module.exports = {
 
+  allFairs: function(req, res) {
+    return checkParams(req, {
+      queryParams: [
+        'role'
+      ]
+    }).then(function() {
+      return UserService.allFairs(req.session.user, req.query.role)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
+
   allInteractions: function(req, res) {
     return checkParams(req, {
       queryParams: [
@@ -39,6 +54,22 @@ module.exports = {
     }).catch(function(err) {
       return HelperService.handleError(err, res);
     })
+  },
+
+  interactionsForFair: function(req, res) {
+    return checkParams(req, {
+      queryParams: [
+        'role',
+        'fair'
+      ]
+    }).then(function() {
+      return UserService.interactionsForFair(req.session.user, req.query.role, req.query.fair)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
   },
 
 

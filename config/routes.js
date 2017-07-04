@@ -47,7 +47,9 @@ module.exports.routes = {
   ***************************************************************************/
 
   /***** USER ROUTES *****/
+  'GET /user/fairs-all'       :   'UserController.allFairs',
   'GET /user/interactions-all'    : 'UserController.allInteractions',
+  'GET /user/interactions-fair'   : 'UserController.interactionsForFair',
   'POST /user/signup'           :   'UserController.signup',
   'POST /user/login'            :   'UserController.login',
   'GET /user/logout'            :   'UserController.logout',
