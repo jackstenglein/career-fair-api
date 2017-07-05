@@ -46,6 +46,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  /***** TEST ROUTES *****/
+
+
   /***** USER ROUTES *****/
   'GET /user/fairs-all'       :   'UserController.allFairs',
   'GET /user/interactions-all'    : 'UserController.allInteractions',
