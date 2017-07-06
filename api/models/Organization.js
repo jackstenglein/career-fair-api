@@ -23,6 +23,11 @@ module.exports = {
       via: 'organization'
     },
 
+    invitationTokens: {
+      collection: 'token',
+      via: 'organization'
+    },
+
     fairs: {
       collection: 'fair',
       via: 'organization'

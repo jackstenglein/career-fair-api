@@ -15,7 +15,11 @@ module.exports = {
     type: {
       type: 'integer',
       required: true
-    }
+    },
+    email: {
+      type: 'string',
+      required: true
+    },
     expiration: {
       type: 'datetime',
       required: true

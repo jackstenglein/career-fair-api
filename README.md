@@ -203,6 +203,15 @@ Response:
 * `error` (string) - The error message, if applicable
 
 
+#### `GET /organization/invitations`
+Gets a list of administrator invitations for an organization. The user must be logged in and have administrator or creator role.
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `invitations` ([object]) - A list of the organization's pending invitations
+* `error` (string) - The error message, if applicable
+
+
 #### `POST /organization/new`
 Creates a new organization. The user creating the organization must be logged in and have a creator role.
 

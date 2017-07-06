@@ -61,5 +61,14 @@ module.exports = {
     }).catch(function(err) {
       return HelperService.handleError(err, res);
     });
+  },
+
+  getAdminInvitations: function(req, res) {
+    return OrganizationService.getAdminInvitations(req.session.user)
+    .then(function(response) {
+      return res.json(response);
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
   }
 }

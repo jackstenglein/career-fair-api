@@ -1,5 +1,20 @@
 const Err = require('err');
 const nestedPop = require('nested-pop');
+const Crypto = require('crypto');
+const Promise = require('bluebird');
+const Moment = require('moment');
+
+
+function generateTokenString() {
+  return new Promise(function(resolve, reject) {
+    Crypto.randomBytes(48, function(err, buffer) {
+      if(err) return reject(err);
+      resolve(buffer.toString('hex'));
+    })
+  })
+}
+
+
 
 module.exports = {
 
@@ -12,18 +27,31 @@ module.exports = {
       if(!user) throw new Err('User not found', 400);
       if(user.role !== 0 && user.role !== 1) throw new Err('You must have creator or administrator status', 400);
 
-      return MailService.send(
-        email,
-        'Join ' + user.organization.name + ' as an administrator',
-        'adminInvitation',
-        {
-          senderName: user.name,
-          organizationName: user.organization.name,
-          invitationLink: 'google.com'
-        }
-      ).then(function(response) {
-        return {'message': 'Email sent successfully'};
-      });
+      return generateTokenString().then(function(token) {
+        return Token.create({
+          token: token,
+          type: 0,
+          email: email,
+          expiration: Moment().add(5, 'days').toDate(),
+          organization: user.organization.id
+        }).then(function(newToken, err) {
+          if(err) throw err;
+
+          return MailService.send(
+            email,
+            'Join ' + user.organization.name + ' as an administrator',
+            'adminInvitation',
+            {
+              senderName: user.name,
+              organizationName: user.organization.name,
+              invitationLink: 'http://localhost:1337/organization/join?token=' + token
+            }
+          ).then(function(response) {
+            return {'message': 'Email sent successfully'};
+          });
+        });
+      })
+
     });
   },
 
@@ -101,6 +129,24 @@ module.exports = {
         return {'message': 'Fair found', 'fair': finalFair};
       });
     });
+  },
+
+  getAdminInvitations: function(userID) {
+    return User.findOne(userID)
+    .populate('organization')
+    .then(function(user, err) {
+      if(err) throw err;
+      if(!user) throw new Err('User not found', 400);
+      if(user.role !== 0 && user.role !== 1) throw new Err('You must have creator or administrator status', 403);
+
+      return nestedPop(user, {
+        organization: [
+          'invitationTokens'
+        ]
+      }).then(function(user) {
+        return {'message': 'Invitations found', 'invitations': user.organization.invitationTokens};
+      });
+    })
   }
 
 }

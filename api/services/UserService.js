@@ -1,5 +1,6 @@
 const Err = require('err');
 const nestedPop = require('nested-pop');
+const Promise = require('bluebird');
 
 function generateNestedPopAll(role) {
   if(role === '2') {

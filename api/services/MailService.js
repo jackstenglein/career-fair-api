@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const AWS = require('aws-sdk');
 const ejs = require('ejs');
+const Promise = require('bluebird');
 
 // AWS.config.loadFromPath('aws-config.json');
 AWS.config = new AWS.Config({
