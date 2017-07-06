@@ -172,6 +172,16 @@ Response:
 
 ### Organization endpoints
 
+#### `POST /organization/add-admin`
+Sends an invitation email to join as an administrator of an organization. The user making the request must be logged in and have administrator or creator access.
+
+Body:
+* `email` (string) - The email address to send the email to
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `error` (string) - The error message, if applicable
+
 #### `GET /organization/fairs-all`
 Gets all fairs for an organization. The user must be logged in and have administrator or creator role. The fairs do not have any model attributes populated.
 

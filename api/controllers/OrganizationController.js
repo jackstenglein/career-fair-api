@@ -9,6 +9,21 @@ const checkParams = require('check-params');
 
 module.exports = {
 
+  addAdministrator: function(req, res) {
+    checkParams(req, {
+      bodyParams: [
+        'email'
+      ]
+    }).then(function() {
+      return OrganizationService.addAdministrator(req.session.user, req.body.email)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
+
   newOrganization: function(req, res) {
     return checkParams(req, {
       bodyParams: [

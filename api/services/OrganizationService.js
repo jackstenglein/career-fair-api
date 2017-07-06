@@ -3,6 +3,31 @@ const nestedPop = require('nested-pop');
 
 module.exports = {
 
+
+  addAdministrator: function(userID, email) {
+    return User.findOne(userID)
+    .populate('organization')
+    .then(function(user, err) {
+      if(err) throw err;
+      if(!user) throw new Err('User not found', 400);
+      if(user.role !== 0 && user.role !== 1) throw new Err('You must have creator or administrator status', 400);
+
+      return MailService.send(
+        email,
+        'Join ' + user.organization.name + ' as an administrator',
+        'adminInvitation',
+        {
+          senderName: user.name,
+          organizationName: user.organization.name,
+          invitationLink: 'google.com'
+        }
+      ).then(function(response) {
+        return {'message': 'Email sent successfully'};
+      });
+    });
+  },
+
+
   newOrganization: function(creatorID, name) {
     return Organization.findOne({
       name: name

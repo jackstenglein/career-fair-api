@@ -1,5 +1,6 @@
 module.exports = {
   handleError: function(err, res) {
+    console.log('Handle error: %j', err);
     if(err.code && err.code !== 0) {
       if(Number(err.code[0]) === 5) {
         // this is a server error
