@@ -182,6 +182,7 @@ Response:
 * `message` (string) - Message from API to help with debugging
 * `error` (string) - The error message, if applicable
 
+
 #### `GET /organization/fairs-all`
 Gets all fairs for an organization. The user must be logged in and have administrator or creator role. The fairs do not have any model attributes populated.
 
@@ -209,6 +210,18 @@ Gets a list of administrator invitations for an organization. The user must be l
 Response:
 * `message` (string) - Message from API to help with debugging
 * `invitations` ([object]) - A list of the organization's pending invitations
+* `error` (string) - The error message, if applicable
+
+
+#### `DELETE /organization/invitation`
+Delete an administrator invitation for an organization. The user making the request must be logged in and have administrator or creator role.
+
+Query:
+* `invitation` (string) - The ID of the invitation token to delete
+
+Response:
+* `message` (string) - Message from API to help with debugging
+* `invitation` (object) - The deleted invitation token
 * `error` (string) - The error message, if applicable
 
 

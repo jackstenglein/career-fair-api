@@ -10,8 +10,8 @@ function generateTokenString() {
     Crypto.randomBytes(48, function(err, buffer) {
       if(err) return reject(err);
       resolve(buffer.toString('hex'));
-    })
-  })
+    });
+  });
 }
 
 
@@ -94,6 +94,31 @@ module.exports = {
         ]
       }).then(function(user) {
         return {'message': 'Fairs found', 'fairs': user.organization.fairs};
+      });
+    });
+  },
+
+  deleteAdminInvitation: function(userID, invitationID) {
+    return User.findOne(userID)
+    .then(function(user, err) {
+      if(err) throw err;
+      if(!user) throw new Err('User not found', 400);
+      if(user.role !== 0 && user.role !== 1) throw new Err('You must have creator or administrator status', 403);
+
+      return Token.findOne(invitationID)
+      .then(function(token, err) {
+        if(err) throw err;
+        if(!token) throw new Err('Invitation not found', 400);
+        if(token.organization !== user.organization) throw new Err('You are not associated with this organization', 403);
+
+        return Token.destroy(invitationID)
+        .then(function(deletedRecords, err) {
+          if(err) throw err;
+          return {
+            'message': 'Invitation deleted',
+            'invitation': deletedRecords[0]
+          };
+        });
       });
     });
   },

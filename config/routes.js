@@ -66,6 +66,7 @@ module.exports.routes = {
   'GET /organization/fair'      :   'OrganizationController.getFair',
   'GET /organization/fairs-all' :   'OrganizationController.allFairs',
   'GET /organization/invitations' : 'OrganizationController.getAdminInvitations',
+  'DELETE /organization/invitation' : 'OrganizationController.deleteAdminInvitation',
   'POST /organization/new'      :   'OrganizationController.newOrganization',
 
 

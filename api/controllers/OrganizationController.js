@@ -48,6 +48,21 @@ module.exports = {
     });
   },
 
+  deleteAdminInvitation: function(req, res) {
+    return checkParams(req, {
+      queryParams: [
+        'invitation'
+      ]
+    }).then(function() {
+      return OrganizationService.deleteAdminInvitation(req.session.user, req.query.invitation)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
+
   getFair: function(req, res) {
     return checkParams(req, {
       queryParams: [

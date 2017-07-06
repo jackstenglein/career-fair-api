@@ -18,7 +18,7 @@ module.exports = {
       required: true
     },
 
-    administartors: {
+    administrators: {
       collection: 'user',
       via: 'organization'
     },
