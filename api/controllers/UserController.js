@@ -41,6 +41,15 @@ module.exports = {
     })
   },
 
+  changePassword: function(req, res) {
+    return checkParams(req, {
+      bodyParams: [
+        'currentPassword',
+        'newPassword'
+      ]
+    })
+  },
+
   confirmPasswordReset: function(req, res) {
     return checkParams(req, {
       bodyParams: [
