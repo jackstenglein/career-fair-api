@@ -14,7 +14,8 @@ module.exports = {
     },
     type: {
       type: 'integer',
-      required: true
+      required: true,
+      enum: [0, 1]
     },
     email: {
       type: 'string',
@@ -26,6 +27,9 @@ module.exports = {
     },
     organization: {
       model: 'organization'
+    },
+    user: {
+      model: 'user'
     }
   }
 };

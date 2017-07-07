@@ -41,6 +41,22 @@ module.exports = {
     })
   },
 
+  confirmPasswordReset: function(req, res) {
+    return checkParams(req, {
+      bodyParams: [
+        'token',
+        'newPassword'
+      ]
+    }).then(function(response) {
+      return AuthService.confirmPasswordReset(req.body.token, req.body.newPassword)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
+
   interactionsForFair: function(req, res) {
     return checkParams(req, {
       queryParams: [
@@ -168,6 +184,21 @@ module.exports = {
       return UserService.registerFair(req.session.user, req.body.fair)
       .then(function(response) {
         res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
+  },
+
+  requestPasswordReset: function(req, res) {
+    checkParams(req, {
+      bodyParams: [
+        'email'
+      ]
+    }).then(function() {
+      return AuthService.requestPasswordReset(req.body.email)
+      .then(function(response) {
+        return res.json(response);
       });
     }).catch(function(err) {
       return HelperService.handleError(err, res);
