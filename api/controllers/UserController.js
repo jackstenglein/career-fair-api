@@ -58,6 +58,7 @@ module.exports = {
   },
 
   confirmPasswordReset: function(req, res) {
+    console.log('CONFIRM PASSWORD RESET');
     return checkParams(req, {
       bodyParams: [
         'token',
@@ -239,5 +240,18 @@ module.exports = {
 		}).catch(function(err) {
 			return HelperService.handleError(err, res);
 		});
+  },
+
+  passwordResetView: function(req, res) {
+    console.log('PASSWORD RESET VIEW');
+    checkParams(req, {
+      queryParams: [
+        'token'
+      ]
+    }).then(function() {
+      return res.confirmPasswordReset(req.query.token);
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
   }
 };

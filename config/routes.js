@@ -60,8 +60,9 @@ module.exports.routes = {
   'POST /user/upload-resume'    :   'UserController.uploadResume',
   'POST /user/register-fair'    :   'UserController.registerFair',
   'POST /user/request-password-reset' : 'UserController.requestPasswordReset',
-  'PUT /user/confirm-password-reset' : 'UserController.confirmPasswordReset',
+  'POST /user/confirm-password-reset' : 'UserController.confirmPasswordReset',
   'PUT /user/change-password':    'UserController.changePassword',
+  'GET /user/confirm-password-reset' : 'UserController.passwordResetView',
 
 
   /***** ORGANIZATION ROUTES *****/
