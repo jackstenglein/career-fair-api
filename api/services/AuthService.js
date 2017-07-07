@@ -5,6 +5,53 @@ const Moment = require('moment');
 
 module.exports = {
 
+  changePassword: function(userID, currentPassword, newPassword) {
+    return User.findOne(userID).then(function(user) {
+      if(!user) {
+        throw new Err('User not found', 400);
+      } else {
+        return new Promise(function(resolve, reject) {
+          Passwords.checkPassword({
+            passwordAttempt: currentPassword,
+            encryptedPassword: user.password
+          }).exec({
+            // if an unexpected error occurred
+            error: function(err) {
+              reject(new Err(err, 500));
+            },
+
+            // password is incorrect
+            incorrect: function() {
+              reject(new Err('Incorrect password', 400));
+            },
+
+            // everything is all right
+            success: function() {
+              Passwords.encryptPassword({
+                password: newPassword
+              }).exec({
+                error: function(err) {
+                  return reject(err);
+                },
+
+                success: function(encryptedPassword) {
+                  User.update(userID, {
+                    password: encryptedPassword
+                  }).then(function(updatedUsers, err) {
+                    if(err) return reject(err);
+                    resolve({
+                      'message': 'Password updated',
+                      'user': updatedUsers[0]
+                    });
+                  }); // </User.update>
+                } // </success>
+              }); // </Passwords.encryptPassword>
+            } // </success>
+          }); // </Passwords.checkPassword>
+        }); // </Promise>
+      }
+    }); // </User.findOne>
+  },
 
   confirmPasswordReset: function(token, newPassword) {
     return Token.findOne({

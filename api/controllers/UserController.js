@@ -47,7 +47,14 @@ module.exports = {
         'currentPassword',
         'newPassword'
       ]
-    })
+    }).then(function() {
+      return AuthService.changePassword(req.session.user, req.body.currentPassword, req.body.newPassword)
+      .then(function(response) {
+        return res.json(response);
+      });
+    }).catch(function(err) {
+      return HelperService.handleError(err, res);
+    });
   },
 
   confirmPasswordReset: function(req, res) {
